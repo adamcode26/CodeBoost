@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 
+     <!-- Site Metas -->
+    <title>CodeBoost - Escape/Unescape JSON</title>  
+    <meta name="keywords" content="JSON escape, JSON unescape, Escape JSON online, Unescape JSON online, Free JSON escape tool,
+	 JSON string escape, JSON encode, JSON decode, Online JSON encoder, Online JSON decoder, JSON special characters, 
+	 JSON escape characters, JSON escape sequence, Escape JSON for URL, Escape JSON for HTML">
+    <meta name="description" content="Escape and unescape your JSON strings online with our free tool. Our user-friendly website allows you to quickly convert, validate, and beautify your JSON data. Try it now to simplify your JSON string manipulation and save time!">
+    <meta name="author" content="Adam code">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+	
+	<script src="js/modernizr.custom.79639.js"></script>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="seo_version">
+
+	<!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-wrapper">
+			<div class="loader-new">
+				<div class="ball"></div>
+				<div class="ball"></div>
+				<div class="ball"></div>
+			</div>
+			<div class="text">LOADING...</div>
+		</div>
+	</div>
+	<!-- END LOADER -->
+	
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<img src="images/logo-seo.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-seo" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-seo">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="#about">About JSON Escape/Unescape</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Services </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="jsonEscapeUnescape.html">Escape/Unescape JSON</a>
+								<a class="dropdown-item" href="jsonParser.html">JSON Formatter and Validator</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+    
+    <div class="mt-5 section lb">
+        <h1 class="text-center"><strong> Escape and Un-Escape </strong></h1>
+        <form>
+            <div class="container form-group">
+                <label for="input">Input:</label>
+                <textarea class="form-control rounded" id="input" rows="13"></textarea>
+            </div>
+        </form>
+        <div class="form-group text-center">
+            <label>Action:</label>
+            <br>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-info d-block mr-2" id="escapeBtn" onclick="escapeJson()">Escape JSON</button>
+              <button class="btn btn-info d-block" id="unescapeBtn" onclick="unescapeJson()">Unescape JSON</button>              
+            </div>
+        </div>
+        <div id="output" class="container mt-5 bg-white rounded w-100 p-3" style="display: none;">
+			<nav class="navbar navbar-light rounded" style="background-color: #17a2b8;">
+				<button class="btn btn-xs d-flex justify-content-center" onclick="copyJson()" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"><img src="images/copybutton-removebg-preview.png"></button>
+			</nav>
+			<div id="outputJson" class="container mt-2 bg-white rounded" style="display: block;"></div>
+		</div>    
+	</div>
+
+    <div id="about" class="section wb nopadtop">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-6 m40">
+                    <div class="message-box">
+                        <h4>SUPERCHARGE YOUR DEVELOPMENT PROCESS</h4>
+                        <h2>CodeBoost - Escapes or unescapes a JSON string</h2>
+                        <p>JSON Escape and Un-Escape is a simple yet powerful tool that allows you to encode and decode JSON data, making it easy to manipulate and use in your applications. Whether you need to escape special characters or un-escape existing JSON data, this tool has got you covered. It's fast, efficient, and makes working with JSON a breeze.</p>
+						
+						<p>The following characters are reserved in JSON and must be properly escaped to be used in strings:<br>
+
+							<strong>Backspace</strong> is replaced with \b<br>
+							<strong>Form feed</strong> is replaced with \f<br>
+							<strong>Newline</strong> is replaced with \n<br>
+							<strong>Carriage</strong> return is replaced with \r<br>
+							<strong>Tab</strong> is replaced with \t<br>
+							<strong>Double</strong> quote is replaced with \"<br>
+							<strong>>Backslash</strong> is replaced with \\ </p>
+                        
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+				
+                <div class="col-md-6">
+                    <div class="post-media wow fadeIn">
+                        <img src="images/escapejsonbig.jpg" alt="" class="img-fluid">
+                    </div><!-- end media -->
+                </div><!-- end col -->
+                
+            </div><!-- end row -->
+			
+			<hr class="hr1">
+			
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div id="services" class="section lb">
+        <div class="container-fluid">
+			<div class="container">
+				<div class="section-title text-center">
+					<h3>CodeBoost Tools</h3>
+					<p class="lead">Here are few tools - MORE COMMING SOON.....</p>
+				</div><!-- end title -->
+			</div>
+            <div class="row text-center">
+				<div class="owl-services-seo owl-carousel owl-theme">
+					<div class="text-center">
+						<a href="jsonEscapeUnescape.html">
+							<div class="service-widget">
+								<div class="post-media wow fadeIn">
+									<img src="images/escapejson.jpg" alt="" class="img-fluid img-rounded">
+								</div>
+								<h3>Escape/Unescape JSON</h3>
+								<p>Escape/Unescape JSON is a simple tool that helps you encode and decode JSON data, making it easier to use and manipulate in your applications.</p>
+							</div><!-- end service -->
+						</a>
+					</div><!-- end col -->
+
+					<div class="text-center">
+						<a href="jsonParser.html">
+							<div class="service-widget">
+								<div class="post-media wow fadeIn">
+									<img src="images/jsonParser.jpg" alt="" class="img-fluid img-rounded">
+								</div>
+								<h3>JSON Formatter and Validator </h3>
+								<p>JSON Formatter and Validator is a handy tool that formats and validates JSON code, making it easier to read and error-free.</p>
+							</div><!-- end service -->
+						</a>
+					</div><!-- end col -->
+
+				</div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div id="pricing" class="section pricing-bg">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3> CodeBoost</h3>
+                <p>The CodeBoost offers a suite of powerful tools and resources designed to help developers streamline their coding process and boost productivity.</p>
+            </div><!-- end title -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <!-- ALL JS FILES -->
+    <script src="js/all.js"></script>
+    <!-- ALL PLUGINS -->
+	<script src="js/tippy.all.min.js"></script>
+    <script src="js/custom.js"></script>
+	
+	<script src="js/jquery.ba-cond.min.js"></script>
+	<script src="js/jquery.slitslider.js"></script>
+    <script>
+        function escapeJson() {
+            document.getElementById("output").style.display = "block";
+            let input = document.getElementById("input").value;
+            let output = input.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t").replace(/\"/g, "\\\"");
+            document.getElementById("outputJson").innerHTML = output;
+            document.getElementById("output").style.display = "block";
+      }
+
+      function unescapeJson() {
+        document.getElementById("output").style.display = "block";
+        let input = document.getElementById("input").value;
+        let output = input.replace(/\\n/g, "\n").replace(/\\r/g, "\r").replace(/\\t/g, "\t").replace(/\\\"/g, "\"");
+        document.getElementById("outputJson").innerHTML = output;
+        document.getElementById("output").style.display = "block";
+      }
+
+	var copyJson = function() {
+		var copyText = document.getElementById("outputJson").innerHTML;
+		navigator.clipboard.writeText(copyText);
+		var tooltip = document.getElementById("myTooltip");
+		tooltip.innerHTML = "Copied to Clipboard";
+	}
+
+      </script>
+  
+	<script type="text/javascript">	
+			$(function() {
+			
+				var Page = (function() {
+
+					var $nav = $( '#nav-dots > span' ),
+						slitslider = $( '#slider' ).slitslider( {
+							onBeforeChange : function( slide, pos ) {
+
+								$nav.removeClass( 'nav-dot-current' );
+								$nav.eq( pos ).addClass( 'nav-dot-current' );
+
+							}
+						} ),
+
+						init = function() {
+
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							$nav.each( function( i ) {
+							
+								$( this ).on( 'click', function( event ) {
+									
+									var $dot = $( this );
+									
+									if( !slitslider.isActive() ) {
+
+										$nav.removeClass( 'nav-dot-current' );
+										$dot.addClass( 'nav-dot-current' );
+									
+									}
+									
+									slitslider.jump( i + 1 );
+									return false;
+								
+								} );
+								
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+				Page.init();
+			
+			});
+		</script>
+		
+		<script>
+			tippy('.btn-a')
+		</script>
+
+
+</body>
+</html>

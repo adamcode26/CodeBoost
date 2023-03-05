@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 
+     <!-- Site Metas -->
+    <title>CodeBoost - JSON Formatter</title>  
+    <meta name="description" content="Format and beautify your JSON code online with our free tool. Validate, visualize, and simplify your JSON data with ease. Try it now!">
+    <meta name="keywords" content="json, editor, online, formatter, view, edit, format, repair, compare, query, transform, 
+    validate, search, share, formatter, json editor, json editor online, online json editor, tool, json tools, open source, 
+    free, json parser, json parser online, json formatter, json formatter online, online json formatter, online json parser, 
+    format json online, json table viewer, json table editor, json grid, JSON Formatter &amp; Validator,JSON Validator,
+    JSON Formatter,JSON Format,Debug JSON,Pretty Print JSON,Validate JSON,JSON Pretty Printer,JSON Beautifier,Beautify JSON, 
+    JSON formatter, JSON beautifier, JSON editor, JSON validator, JSON viewer, Online JSON formatter, Free JSON formatter, 
+    JSON formatter and validator, Beautify JSON online, Format JSON online, JSON pretty print, JSON lint, JSON minifier, '
+    JSON parser, JSON syntax highlighting">
+    <meta name="author" content="Adam code">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- ALL VERSION CSS -->
+    <link rel="stylesheet" href="css/versions.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/testStyle.css">
+    <!-- <link rel="stylesheet" href="css/testDemo.css"> -->
+	<script src="js/modernizr.custom.79639.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        
+    </style>
+
+</head>
+<body class="seo_version">
+
+	<!-- LOADER -->
+	<div id="preloader">
+		<div class="loader-wrapper">
+			<div class="loader-new">
+				<div class="ball"></div>
+				<div class="ball"></div>
+				<div class="ball"></div>
+			</div>
+			<div class="text">LOADING...</div>
+		</div>
+	</div>
+	<!-- END LOADER -->
+	
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<img src="images/logo-seo.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-seo" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="navbar-collapse" id="navbars-seo">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item"><a class="nav-link" href="#about">About JSON Parser</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Tools</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="jsonEscapeUnescape.html">Escape/Unescape JSON</a>
+								<a class="dropdown-item" href="jsonParser.html">JSON Formatter and Validator</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+    
+    <div class="mt-5 section lb">
+        <h1 class="text-center"><strong>JSON Formatter</strong></h1>
+        <form>
+            <div class="container form-group">
+                <label for="input">Input:</label>
+                <textarea class="form-control rounded" id="jsonInput" rows="13"></textarea>
+            </div>
+        </form>
+        <div class="form-group text-center">
+            <label>Action:</label>
+            <br>
+            <div class="d-flex justify-content-center" style="display: none;" >
+              <button class="btn btn-info d-block mr-2" id="escapeBtn" onclick="parseJson()">Plain Text</button>
+              <button class="btn btn-info d-block mr-2" id="treeViewButton" onclick="loadjsontree()">JSON Object</button>              
+            </div>
+        </div>
+        <div>
+            <div id="jsonOutput" class="container mt-5 bg-white rounded w-100 p-3" style="display: none;"></div>
+            <div id="json" class="container mt-5 mt-5 rounded w-100 p-3" style="display: none;">
+                <nav class="navbar navbar-light rounded" style="background-color: #17a2b8;">
+                    <button class="btn btn-xs d-flex justify-content-center" onclick="downloadJson()"><i class="fa fa-download" style="font-size:13px"></i></button>
+                    <button class="btn btn-xs d-flex justify-content-center">Formatted JSON</i></button>
+                    <button class="btn btn-xs d-flex justify-content-center" onclick="copyJson()" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"><img src="images/copybutton-removebg-preview.png"></button>
+                </nav>
+            </div>   
+            <div id="errorJson" class="container mt-5 mt-5 rounded w-100 p-3" style="display: none;"></div>
+        </div> 
+	</div>
+
+    <div id="about" class="section wb nopadtop">
+        <div class="container">
+            <div class="row">
+				<div class="col-md-6 m40">
+                    <div class="message-box">
+                        <h4>SUPERCHARGE YOUR DEVELOPMENT PROCESS</h4>
+                        <h2>CodeBoost - JSON Formatter</h2>
+                        <p>JSON Formatter is a tool that helps to format or prettify JSON data for better readability and understanding. It takes JSON data in its raw, compressed or minified form and transforms it into a well-structured and indented format that is easy to read and work with. This tool also provides syntax highlighting, error checking and validation to ensure that the JSON data is correctly formatted and free from errors.</p>
+						
+						<p>JSON is a data format that is independent of any programming language and uses human-readable text to represent data objects with attribute-value pairs. It is a flexible and lightweight format that can be easily understood by both humans and machines. JSON originated from the JavaScript scripting language, but it is now widely supported and used with many other programming languages, including PHP, Python, Ruby, Java, and more. </p>
+                        
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+				
+                <div class="col-md-6">
+                    <div class="post-media wow fadeIn">
+                        <img src="images/jsonParserbig.jpg" alt="" class="img-fluid">
+                    </div><!-- end media -->
+                </div><!-- end col -->
+                
+            </div><!-- end row -->
+			
+			<hr class="hr1">
+			
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div id="services" class="section lb">
+        <div class="container-fluid">
+			<div class="container">
+				<div class="section-title text-center">
+					<h3>CodeBoost Tools</h3>
+					<p class="lead">Here are few tools - MORE COMMING SOON.....</p>
+                </div><!-- end title -->
+			</div>
+            <div class="row text-center">
+				<div class="owl-services-seo owl-carousel owl-theme">
+					<div class="text-center">
+						<a href="jsonEscapeUnescape.html">
+							<div class="service-widget">
+								<div class="post-media wow fadeIn">
+									<img src="images/escapejson.jpg" alt="" class="img-fluid img-rounded">
+								</div>
+								<h3>Escape/Unescape JSON</h3>
+								<p>Escape/Unescape JSON is a simple tool that helps you encode and decode JSON data, making it easier to use and manipulate in your applications.</p>
+							</div><!-- end service -->
+						</a>
+					</div><!-- end col -->
+
+					<div class="text-center">
+						<a href="jsonParser.html">
+							<div class="service-widget">
+								<div class="post-media wow fadeIn">
+									<img src="images/jsonParser.jpg" alt="" class="img-fluid img-rounded">
+								</div>
+								<h3>JSON Formatter and Validator </h3>
+								<p>JSON Formatter and Validator is a handy tool that formats and validates JSON code, making it easier to read and error-free.</p>
+							</div><!-- end service -->
+						</a>
+					</div><!-- end col -->
+				</div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div id="pricing" class="section pricing-bg">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3> CodeBoost</h3>
+                <p>The CodeBoost offers a suite of powerful tools and resources designed to help developers streamline their coding process and boost productivity.</p>
+            </div><!-- end title -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <!-- ALL JS FILES -->
+    <script src="js/all.js"></script>
+    <!-- ALL PLUGINS -->
+	<script src="js/tippy.all.min.js"></script>
+    <script src="js/custom.js"></script>
+	
+	<script src="js/jquery.ba-cond.min.js"></script>
+	<script src="js/jquery.slitslider.js"></script>
+	<script>
+		function parseJson() {
+		  let a = document.getElementById('jsonInput').value;
+		  for (var b = a.replace(/\n/g, " ").replace(/\r/g, " "), e = [], c = 0, d = !1, f = 0, i = b.length; f < i; f++) {
+                    var g = b.charAt(f);
+                    if (d && g === d) b.charAt(f -
+                        1) !== "\\" && (d = !1);
+                    else if (!d && (g === '"' || g === "'")) d = g;
+                    else if (!d && (g === " " || g === "\t")) g = "";
+                    else if (!d && g === ":") g += " ";
+                    else if (!d && g === ",") g += "\n" + ' '.repeat(c * 2);
+                    else if (!d && (g === "[" || g === "{")) c++, g += "\n" + ' '.repeat(c * 2);
+                    else if (!d && (g === "]" || g === "}")) c--, g = "\n" + ' '.repeat(c * 2) + g;
+                    e.push(g);
+                }
+                a = (e.join(""));
+			jsonOutput.innerHTML =  "<pre>" + a +"</pre>";
+			document.getElementById("jsonOutput").style.display = "block";
+            document.getElementById("json").style.display = "none";
+            document.getElementById("errorJson").style.display = "none";
+		}
+        var JSONViewer = (function() {
+            var JSONViewer = function() {
+                this._dom = {};
+                this._dom.container = document.createElement("pre");
+                this._dom.container.classList.add("json-viewer");
+            };
+            JSONViewer.prototype.showJSON = function(json, maxLvl, colAt) {
+                maxLvl = typeof maxLvl === "number" ? maxLvl : -1; // max level
+                colAt = typeof colAt === "number" ? colAt : -1; // collapse at
+
+                var jsonData = this._processInput(json);
+                var walkEl = this._walk(jsonData, maxLvl, colAt, 0);
+
+                this._dom.container.innerHTML = "";
+                this._dom.container.appendChild(walkEl);
+            };
+
+            /**
+             * Get container with pre object - this container is used for visualise JSON data.
+             * 
+             * @return {Element}
+             */
+            JSONViewer.prototype.getContainer = function() {
+                return this._dom.container;
+            };
+
+            /**
+             * Process input JSON - throws exception for unrecognized input.
+             * 
+             * @param {Object|Array} json Input value
+             * @return {Object|Array}
+             */
+            JSONViewer.prototype._processInput = function(json) {
+                if (json && typeof json === "object") {
+                    return json;
+                }
+                else {
+                    throw "Input value is not object or array!";
+                }
+            };
+
+            /**
+             * Recursive walk for input value.
+             * 
+             * @param {Object|Array} value Input value
+             * @param {Number} maxLvl Process only to max level, where 0..n, -1 unlimited
+             * @param {Number} colAt Collapse at level, where 0..n, -1 unlimited
+             * @param {Number} lvl Current level
+             */
+            JSONViewer.prototype._walk = function(value, maxLvl, colAt, lvl) {
+                var frag = document.createDocumentFragment();
+                var isMaxLvl = maxLvl >= 0 && lvl >= maxLvl;
+                var isCollapse = colAt >= 0 && lvl >= colAt;
+
+                switch (typeof value) {
+                    case "object":
+                        if (value) {
+                            var isArray = Array.isArray(value);
+                            var items = isArray ? value : Object.keys(value);
+
+                            if (lvl === 0) {
+                                // root level
+                                var rootCount = this._createItemsCount(items.length);
+                                // hide/show
+                                var rootLink = this._createLink(isArray ? "[" : "{");
+
+                                if (items.length) {
+                                    rootLink.addEventListener("click", function() {
+                                        if (isMaxLvl) return;
+
+                                        rootLink.classList.toggle("collapsed");
+                                        rootCount.classList.toggle("hide");
+
+                                        // main list
+                                        this._dom.container.querySelector("ul").classList.toggle("hide");
+                                    }.bind(this));
+
+                                    if (isCollapse) {
+                                        rootLink.classList.add("collapsed");
+                                        rootCount.classList.remove("hide");
+                                    }
+                                }
+                                else {
+                                    rootLink.classList.add("empty");
+                                }
+
+                                rootLink.appendChild(rootCount);
+                                frag.appendChild(rootLink);
+                            }
+
+                            if (items.length && !isMaxLvl) {
+                                var len = items.length - 1;
+                                var ulList = document.createElement("ul");
+                                ulList.setAttribute("data-level", lvl);
+                                ulList.classList.add("type-" + (isArray ? "array" : "object"));
+
+                                items.forEach(function(key, ind) {
+                                    var item = isArray ? key : value[key];
+                                    var li = document.createElement("li");
+
+                                    if (typeof item === "object") {
+                                        var isEmpty = false;
+
+                                        // null && date
+                                        if (!item || item instanceof Date) {
+                                            li.appendChild(document.createTextNode(isArray ? "" : key + ": "));
+                                            li.appendChild(this._createSimple(item ? item : null));
+                                        }
+                                        // array & object
+                                        else {
+                                            var itemIsArray = Array.isArray(item);
+                                            var itemLen = itemIsArray ? item.length : Object.keys(item).length;
+
+                                            // empty
+                                            if (!itemLen) {
+                                                li.appendChild(document.createTextNode(key + ": " + (itemIsArray ? "[]" : "{}")));
+                                            }
+                                            else {
+                                                // 1+ items
+                                                var itemTitle = (typeof key === "string" ? key + ": " : "") + (itemIsArray ? "[" : "{");
+                                                var itemLink = this._createLink(itemTitle);
+                                                var itemsCount = this._createItemsCount(itemLen);
+
+                                                // maxLvl - only text, no link
+                                                if (maxLvl >= 0 && lvl + 1 >= maxLvl) {
+                                                    li.appendChild(document.createTextNode(itemTitle));
+                                                }
+                                                else {
+                                                    itemLink.appendChild(itemsCount);
+                                                    li.appendChild(itemLink);
+                                                }
+
+                                                li.appendChild(this._walk(item, maxLvl, colAt, lvl + 1));
+                                                li.appendChild(document.createTextNode(itemIsArray ? "]" : "}"));
+                                                
+                                                var list = li.querySelector("ul");
+                                                var itemLinkCb = function() {
+                                                    itemLink.classList.toggle("collapsed");
+                                                    itemsCount.classList.toggle("hide");
+                                                    list.classList.toggle("hide");
+                                                };
+
+                                                // hide/show
+                                                itemLink.addEventListener("click", itemLinkCb);
+
+                                                // collapse lower level
+                                                if (colAt >= 0 && lvl + 1 >= colAt) {
+                                                    itemLinkCb();
+                                                }
+                                            }
+                                        }
+                                    }
+                                    // simple values
+                                    else {
+                                        // object keys with key:
+                                        if (!isArray) {
+                                            li.appendChild(document.createTextNode(key + ": "));
+                                        }
+
+                                        // recursive
+                                        li.appendChild(this._walk(item, maxLvl, colAt, lvl + 1));
+                                    }
+
+                                    // add comma to the end
+                                    if (ind < len) {
+                                        li.appendChild(document.createTextNode(","));
+                                    }
+
+                                    ulList.appendChild(li);
+                                }, this);
+
+                                frag.appendChild(ulList);
+                            }
+                            else if (items.length && isMaxLvl) {
+                                var itemsCount = this._createItemsCount(items.length);
+                                itemsCount.classList.remove("hide");
+
+                                frag.appendChild(itemsCount);
+                            }
+
+                            if (lvl === 0) {
+                                // empty root
+                                if (!items.length) {
+                                    var itemsCount = this._createItemsCount(0);
+                                    itemsCount.classList.remove("hide");
+
+                                    frag.appendChild(itemsCount);
+                                }
+
+                                // root cover
+                                frag.appendChild(document.createTextNode(isArray ? "]" : "}"));
+
+                                // collapse
+                                if (isCollapse) {
+                                    frag.querySelector("ul").classList.add("hide");
+                                }
+                            }
+                            break;
+                        }
+
+                    default:
+                        // simple values
+                        frag.appendChild(this._createSimple(value));
+                        break;
+                }
+
+                return frag;
+            };
+
+            /**
+             * Create simple value (no object|array).
+             * 
+             * @param  {Number|String|null|undefined|Date} value Input value
+             * @return {Element}
+             */
+            JSONViewer.prototype._createSimple = function(value) {
+                var spanEl = document.createElement("span");
+                var type = typeof value;
+                var txt = value;
+
+                if (type === "string") {
+                    txt = '"' + value + '"';
+                }
+                else if (value === null) {
+                    type = "null";
+                    txt = "null";
+                }
+                else if (value === undefined) {
+                    txt = "undefined";
+                }
+                else if (value instanceof Date) {
+                    type = "date";
+                    txt = value.toString();
+                }
+
+                spanEl.classList.add("type-" + type);
+                spanEl.innerHTML = txt;
+
+                return spanEl;
+            };
+
+            /**
+             * Create items count element.
+             * 
+             * @param  {Number} count Items count
+             * @return {Element}
+             */
+            JSONViewer.prototype._createItemsCount = function(count) {
+                var itemsCount = document.createElement("span");
+                itemsCount.classList.add("items-ph");
+                itemsCount.classList.add("hide");
+                itemsCount.innerHTML = this._getItemsTitle(count);
+
+                return itemsCount;
+            };
+
+            /**
+             * Create clickable link.
+             * 
+             * @param  {String} title Link title
+             * @return {Element}
+             */
+            JSONViewer.prototype._createLink = function(title) {
+                var linkEl = document.createElement("a");
+                linkEl.classList.add("list-link");
+                linkEl.href = "javascript:void(0)";
+                linkEl.innerHTML = title || "";
+
+                return linkEl;
+            };
+
+            /**
+             * Get correct item|s title for count.
+             * 
+             * @param  {Number} count Items count
+             * @return {String}
+             */
+            JSONViewer.prototype._getItemsTitle = function(count) {
+                var itemsTxt = count > 1 || count === 0 ? "items" : "item";
+
+                return (count + " " + itemsTxt);
+            };
+
+            return JSONViewer;
+        })();
+
+        
+  </script>
+
+	  </script>
+  
+	<script type="text/javascript">	
+			$(function() {
+			
+				var Page = (function() {
+
+					var $nav = $( '#nav-dots > span' ),
+						slitslider = $( '#slider' ).slitslider( {
+							onBeforeChange : function( slide, pos ) {
+
+								$nav.removeClass( 'nav-dot-current' );
+								$nav.eq( pos ).addClass( 'nav-dot-current' );
+
+							}
+						} ),
+
+						init = function() {
+
+							initEvents();
+							
+						},
+						initEvents = function() {
+
+							$nav.each( function( i ) {
+							
+								$( this ).on( 'click', function( event ) {
+									
+									var $dot = $( this );
+									
+									if( !slitslider.isActive() ) {
+
+										$nav.removeClass( 'nav-dot-current' );
+										$dot.addClass( 'nav-dot-current' );
+									
+									}
+									
+									slitslider.jump( i + 1 );
+									return false;
+								
+								} );
+								
+							} );
+
+						};
+
+						return { init : init };
+
+				})();
+
+				Page.init();
+			
+			});
+		</script>
+		
+		<script>
+			tippy('.btn-a')
+		</script>
+        <script  src="js/testJs.js"></script>
+
+
+</body>
+</html>
