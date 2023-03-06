@@ -112,7 +112,7 @@
 			<nav class="navbar navbar-light rounded" style="background-color: #17a2b8;">
 				<button class="btn btn-xs d-flex justify-content-center" onclick="copyJson()" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"><img src="images/copybutton-removebg-preview.png"></button>
 			</nav>
-			<div id="outputJson" class="container mt-2 bg-white rounded" style="display: block;"></div>
+			<div id="outputJson" class="container mt-2 bg-white rounded" style="display: block; word-wrap: break-word;"></div>
 		</div>    
 	</div>
 
@@ -212,7 +212,7 @@
             document.getElementById("output").style.display = "block";
             let input = document.getElementById("input").value;
             let output = input.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/\t/g, "\\t").replace(/\"/g, "\\\"");
-            document.getElementById("outputJson").innerHTML = output;
+            document.getElementById("outputJson").innerHTML ='<textarea readonly id="outputPre" class="form-control rounded" rows=15>'+ output+ "</textarea>";
             document.getElementById("output").style.display = "block";
       }
 
@@ -220,12 +220,13 @@
         document.getElementById("output").style.display = "block";
         let input = document.getElementById("input").value;
         let output = input.replace(/\\n/g, "\n").replace(/\\r/g, "\r").replace(/\\t/g, "\t").replace(/\\\"/g, "\"");
-        document.getElementById("outputJson").innerHTML = output;
+        document.getElementById("outputJson").innerHTML ='<textarea readonly id="outputPre" class="form-control rounded" rows=15>'+ output+ "</textarea>";
         document.getElementById("output").style.display = "block";
       }
 
 	var copyJson = function() {
-		var copyText = document.getElementById("outputJson").innerHTML;
+		var copyText = document.getElementById("outputPre").innerHTML;
+		console.log(copyText);
 		navigator.clipboard.writeText(copyText);
 		var tooltip = document.getElementById("myTooltip");
 		tooltip.innerHTML = "Copied to Clipboard";
