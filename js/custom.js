@@ -9,13 +9,13 @@
     Fixed menu
     =============================================== */
 
-    $(window).on('scroll', function () {
-        if ($(window).scrollTop() > 50) {
-            $('.top-navbar').addClass('fixed-menu');
-        } else {
-            $('.top-navbar').removeClass('fixed-menu');
-        }
-    });
+    // $(window).on('scroll', function () {
+    //     if ($(window).scrollTop() > 50) {
+    //         $('.top-navbar').addClass('fixed-menu');
+    //     } else {
+    //         $('.top-navbar').removeClass('fixed-menu');
+    //     }
+    // });
 
     /* ==============================================
     BACK TOP
