@@ -120,13 +120,14 @@
             </div>
         </div>
         <div>
-            <div id="jsonOutput" class="container mt-5 bg-white rounded w-100 p-3" style="display: none;"></div>
-            <div id="json" class="container mt-5 mt-5 rounded w-100 p-3" style="display: none;">
+            <div id="jsonOutput" class="container mt-5 bg-white rounded w-100 p-3" style="display: none; height: 500px; overflow: auto;"></div>
+            <div id="outputblock" class="container mt-5 mt-5 rounded w-100 p-3" style="display: none;">
                 <nav class="navbar navbar-light rounded" style="background-color: #17a2b8;">
                     <button class="btn btn-xs d-flex justify-content-center" onclick="downloadJson()"><i class="fa fa-download" style="font-size:13px"></i></button>
                     <button class="btn btn-xs d-flex justify-content-center">Formatted JSON</i></button>
                     <button class="btn btn-xs d-flex justify-content-center" onclick="copyJson()" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"><img src="images/copybutton-removebg-preview.png"></button>
                 </nav>
+                <div id="json" class="container mt-2 bg-white rounded" style="display: block; word-wrap: break-word; height: 500px; overflow: auto;"></div>
             </div>   
             <div id="errorJson" class="container mt-5 mt-5 rounded w-100 p-3" style="display: none;"></div>
         </div> 
@@ -246,7 +247,7 @@
                 a = (e.join(""));
 			jsonOutput.innerHTML =  "<pre>" + a +"</pre>";
 			document.getElementById("jsonOutput").style.display = "block";
-            document.getElementById("json").style.display = "none";
+            document.getElementById("outputblock").style.display = "none";
             document.getElementById("errorJson").style.display = "none";
 		}
         var JSONViewer = (function() {

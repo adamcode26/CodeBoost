@@ -9,13 +9,13 @@ var setJSON = function () {
         jsonObj = JSON.parse(value);
         document.getElementById("jsonOutput").style.display = "none";
         document.getElementById("errorJson").style.display = "none";
-        document.getElementById("json").style.display = "block";
+        document.getElementById("outputblock").style.display = "block";
     }
     catch (err) {
         errorJson.innerHTML = `Malformed Json ${err.message} <br> You can still use <strong>Plain Text</strong> button`;
         document.getElementById("errorJson").style.display = "block";
         document.getElementById("jsonOutput").style.display = "none";
-        document.getElementById("json").style.display = "none";
+        document.getElementById("outputblock").style.display = "none";
     }
 };
 function loadjsontree() {
