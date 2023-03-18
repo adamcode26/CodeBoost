@@ -11,13 +11,12 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
  
      <!-- Site Metas -->
-    <title>CodeBoost - XML Formatter</title>  
-    <meta name="keywords" content="XML formatting tool, XML code formatter, Format XML online, XML beautifier, 
-    XML syntax highlighter, XML indentation tool, Pretty print XML, Online XML editor, XML viewer and formatter,
-    Free XML formatter, XML formatter Java, XML formatter Python, XML formatter online, XML formatter notepad++, 
-    Best XML formatter, XML formatter plugin, XML formatter VS code, XML format validator, XML formatter Eclipse,
-     XML formatter Visual Studio.">
-    <meta name="description" content="JSON Formatter and Validator is a handy tool that formats and validates JSON code, making it easier to read and error-free.">
+    <title>CodeBoost - HTML Formatter</title>  
+    <meta name="keywords" content="HTML beautifier, HTML formatter online, HTML prettify, HTML code formatter, HTML tidy, HTML syntax highlighter, HTML validator,
+     HTML code checker, HTML linting tool, HTML code editor, Free HTML formatter, Online HTML code formatter, HTML formatter tool, Best HTML formatter, Simple HTML formatter, 
+     HTML indentation tool, Code beautifier for HTML, HTML minifier and formatter, Clean HTML code formatter, HTML formatter with CSS support, Quick HTML formatter, 
+     Responsive HTML formatter, HTML source code formatter, HTML formatter with line numbers, Customizable HTML formatter">
+    <meta name="description" content="">
     <meta name="author" content="Adam code">
 
     <!-- Site Icons -->
@@ -45,24 +44,6 @@
         body { background-color: #fafafa; }
     </style>
 
-    <script language="javascript">
-        $(document).ready(function () {
-            $("#dynamicXML-process").click(function () {
-                try {
-                    $("#output").css("display", "block");
-                    $("#errorXML").css("display", "none");
-                    $("#dynamicXML-output").empty();
-                    var xml = $("#dynamicXML").val();
-                    $("#dynamicXML-output").simpleXML({ xmlString: xml });
-                } catch (ex) {
-                    $("#output").css("display", "none");
-                    $("#errorXML").css("display", "block");
-                    var error = `Error occured: ${ex}`;
-                    $("#errorXML").html(error);
-                }
-            });
-        });
-    </script>
 
 </head>
 
@@ -124,7 +105,7 @@
 	<!-- End header -->
     
     <div class="mt-5 section lb">
-        <h1 class="text-center"><strong> XML Formatter </strong></h1>
+        <h1 class="text-center"><strong> HTML Formatter </strong></h1>
         <form>
             <div class="container form-group">
                 <label for="input">Input:</label>
@@ -136,14 +117,14 @@
             <br>
             <div class="d-flex justify-content-center">
                 <a href="#output">
-                    <button class="btn btn-info d-block mr-2" id="dynamicXML-process" >Format XML</button>
+                    <button class="btn btn-info d-block mr-2" id="dynamicXML-process" >Format HTML</button>
                 </a>            
             </div>
         </div>
         <div id="output" class="container mt-5 bg-white rounded w-100 p-3" style="display: none;">
 			<nav class="navbar navbar-light rounded" style="background-color: #17a2b8;">
                 <button class="btn btn-xs d-flex justify-content-center" onclick="downloadXml()"><i class="fa fa-download" style="font-size:13px"></i></button>
-                <button class="btn btn-xs d-flex justify-content-center">Formatted XML</button>
+                <button class="btn btn-xs d-flex justify-content-center">Formatted HTML</button>
 				<button class="btn btn-xs d-flex justify-content-center" onclick="copyXml()" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"><img src="images/copybutton-removebg-preview.png"></button>
 			</nav>
 			<div id="dynamicXML-output" class="container mt-2 bg-white rounded" style="display: block; word-wrap: break-word; height: 500px; overflow: auto;"></div>
@@ -157,19 +138,17 @@
 				<div class="col-md-6 m40">
                     <div class="message-box">
                         <h4>SUPERCHARGE YOUR DEVELOPMENT PROCESS</h4>
-                        <h2>CodeBoost - XML Formatter</h2>
-						<p>An XML formatter is a tool that helps to organize and format XML code in a structured and easy-to-read manner.
-                             It helps to improve the readability of XML documents by applying consistent indentation, line breaks, and other formatting rules to the code.
-                             This makes it easier for developers to understand the structure of the XML document and to edit it efficiently. 
-                             XML formatters are particularly useful for large XML files or documents that have been generated programmatically, 
-                             as they can quickly become difficult to read and edit without proper formatting.</p>
+                        <h2>CodeBoost - HTML Formatter</h2>
+						<p>An HTML formatter is a tool that helps to format or beautify HTML code by reorganizing and reformatting it in a more readable and organized way. 
+                            This makes the code easier to read, understand and maintain. HTML formatters typically work by analyzing the code structure and applying indentation,
+                             line breaks, and other formatting rules to improve the code's readability.</p>
                         
                     </div><!-- end messagebox -->
                 </div><!-- end col -->
 				
                 <div class="col-md-6">
                     <div class="post-media wow fadeIn">
-                        <img src="images\xmlFormatter.png" alt="" class="img-fluid">
+                        <img src="images\htmlformatter.png" alt="" class="img-fluid">
                     </div><!-- end media -->
                 </div><!-- end col -->
                 
@@ -261,34 +240,85 @@
 	<script src="js/jquery.ba-cond.min.js"></script>
 	<script src="js/jquery.slitslider.js"></script>
     <script>
-        function getFormatedXMl() {
-            const sourceXml =  document.getElementById('dynamicXML').value;
-            var xmlDoc = new DOMParser().parseFromString(sourceXml, 'application/xml');
-            var xsltDoc = new DOMParser().parseFromString([
-                // describes how we want to modify the XML - indent everything
-                '<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform">',
-                '  <xsl:strip-space elements="*"/>',
-                '  <xsl:template match="para[content-style][not(text())]">', // change to just text() to strip space in text nodes
-                '    <xsl:value-of select="normalize-space(.)"/>',
-                '  </xsl:template>',
-                '  <xsl:template match="node()|@*">',
-                '    <xsl:copy><xsl:apply-templates select="node()|@*"/></xsl:copy>',
-                '  </xsl:template>',
-                '  <xsl:output indent="yes"/>',
-                '</xsl:stylesheet>',
-            ].join('\n'), 'application/xml');
-            var xsltProcessor = new XSLTProcessor();    
-            xsltProcessor.importStylesheet(xsltDoc);
-            var resultDoc = xsltProcessor.transformToDocument(xmlDoc);
-            var resultXml = new XMLSerializer().serializeToString(resultDoc);
-            return resultXml;
+        //  function formatHTML() {
+        //     let htmlString =  document.getElementById('dynamicXML').value;
+
+        function isSelfClosing(tagName) {
+            const selfClosingTags = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
+            return selfClosingTags.includes(tagName);
+            }
+
+            function isTagSelfClosing(tag) {
+            const tagRegex = /<([a-z][a-z0-9]*)\b[^>]*\/?>/gi;
+            const match = tagRegex.exec(tag);
+            if (match) {
+                const tagName = match[1];
+                return isSelfClosing(tagName);
+            }
+            return false;
+        }
+
+
+        function formatHTML() {
+            let htmlString = document.getElementById('dynamicXML').value;
+            // Remove leading and trailing whitespace
+            htmlString = htmlString.trim();
+
+            // Initialize variables
+            let tabSize = 2;
+            let tab = "";
+            let formatted = "";
+            let selfClosingTags = ["br", "hr", "img", "input", "link", "meta"];
+            let pattern = /(<[^>]+>)([^<]*)/g;
+            let prevSelfClosing = false;
+
+            // Loop through each match in the HTML string
+            let match;
+            while ((match = pattern.exec(htmlString))) {
+                let tag = match[1];
+                let content = match[2];
+
+                // Handle self-closing tags
+                console.log(tag)
+                if (isTagSelfClosing(tag)) {
+                    formatted += `${tab}${tag}\n`;
+                    prevSelfClosing = true;
+                }
+                // Handle opening tags
+                else if (!tag.startsWith("</")) {
+                    formatted += `${tab}${tag}\n`;
+                    if (!prevSelfClosing) {
+                        tab += " ".repeat(tabSize);
+                    }
+                    prevSelfClosing = false;
+                }
+                // Handle closing tags
+                else {
+                    tab = tab.slice(0, -tabSize);
+                    // if (prevSelfClosing) {
+                    //     formatted += `${tag}\n`;
+                    //     prevSelfClosing = false;
+                    // } else {
+                        formatted += `${tab}${tag}\n`;
+                   // }
+                }
+
+                // Add content (if any)
+                if (content.trim()) {
+                    formatted += `${tab}${content.trim()}\n`;
+                }
+            }
+
+            return formatted.trim();
         }
 
         function downloadXml(){
-            let data =  getFormatedXMl();
-            const filename = 'data.xml';
+            console.log("inside here");
+            let data =  formatHTML();
+            console.log(data);
+            const filename = 'data.html';
 			const element = document.createElement('a');
-			element.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(data));
+			element.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(data));
 			element.setAttribute('download', filename);
 			element.style.display = 'none';
 			document.body.appendChild(element);
@@ -297,7 +327,7 @@
         }
 
         function copyXml(){
-            let data =  getFormatedXMl();
+            let data =  formatHTML();
             navigator.clipboard.writeText(data);
             var tooltip = document.getElementById("myTooltip");
             tooltip.innerHTML = "Copied to Clipboard";
@@ -356,8 +386,29 @@
 			
 			});
             
+            
+
+
             // XML formatter
             $(function () {
+
+                $(document).ready(function () {
+                    $("#dynamicXML-process").click(function () {
+                        try {
+                            $("#output").css("display", "block");
+                            $("#errorXML").css("display", "none");
+                            $("#dynamicXML-output").empty();
+                            var xml = $("#dynamicXML").val();
+                            var result = $.fn.simpleXML({ xmlString: xml });
+                            $("#dynamicXML-output").simpleXML({ xmlString: xml });
+                        } catch (ex) {
+                            $("#output").css("display", "none");
+                            $("#errorXML").css("display", "block");
+                            var error = `Error occured: ${ex}`;
+                            $("#errorXML").html(error);
+                        }
+                    });
+                });
 
                 // Additional features that are needed
                 //
@@ -384,10 +435,13 @@
 
                     if (settings.xml != undefined && settings.xmlString != undefined)
                         throw "Only one of xml and xmlString may be supplied";
-
+                        
                     var xml = settings.xml;
-                    if (xml == undefined)
-                        xml = $.parseXML(settings.xmlString);
+                    // if (xml == undefined)
+                    //     xml = $.parseXML(settings.xmlString);
+                    
+                    const parser = new DOMParser();
+                    xml = parser.parseFromString(settings.xmlString, 'text/html');
 
                     return this.each(function () {
                         var wrapperNode = document.createElement("span");
